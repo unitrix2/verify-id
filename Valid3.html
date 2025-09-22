@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ID Card Demo – Sengar Security</title>
+<style>
+  :root{
+    --brand:#004aad;
+    --bg:#f0f2f5;
+    --card:#fff;
+    --muted:#666;
+    --border:#eaeaea;
+    --ok-bg:#d4edda; --ok:#155724;
+    --bad-bg:#f8d7da; --bad:#721c24;
+    --warn-bg:#fff3cd; --warn:#856404;
+  }
+  body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);margin:0}
+  .container{max-width:520px;margin:0 auto;padding:16px}
+  .tabs{display:flex;gap:8px;position:sticky;top:0;background:var(--bg);padding:12px 0 8px;z-index:10}
+  .tab{flex:1;text-align:center;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:#fff;cursor:pointer;font-weight:600}
+  .tab.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+  .hint{font-size:12px;color:var(--muted);text-align:center;margin:8px 0 12px}
+  .panel{display:none}
+  .panel.active{display:block}
+
+  /* Card UI */
+  .card{max-width:460px;margin:0 auto;background:var(--card);border-radius:12px;
+        box-shadow:0 2px 8px rgba(0,0,0,.08);overflow:hidden;border:1px solid var(--border)}
+  .header{background:var(--brand);color:#fff;padding:14px 18px;font-weight:700;font-size:16px;text-align:center}
+  .profile{display:flex;padding:18px;align-items:center;gap:16px}
+  .profile img{width:90px;height:90px;border-radius:10px;object-fit:cover;border:2px solid #eee}
+  .profile-info{flex:1}
+  .profile-info h2{margin:0;font-size:20px}
+  .profile-info div{color:#555;font-size:14px;margin-top:3px}
+  .details{padding:0 18px 18px;font-size:14px;color:#333}
+  .badge{padding:4px 10px;border-radius:6px;font-weight:600;font-size:13px;white-space:nowrap;display:inline-block}
+  .valid{background:var(--ok-bg);color:var(--ok)}
+  .invalid{background:var(--bad-bg);color:var(--bad)}
+  .warn{background:var(--warn-bg);color:var(--warn)}
+  .section{margin-top:10px;padding:10px;border-radius:8px;background:#fafafa;border:1px solid #eee}
+  .footer{background:#f5f5f5;padding:10px;font-size:11px;color:var(--muted);text-align:center}
+  .badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="tabs" role="tablist">
+      <button class="tab active" role="tab" aria-selected="true" aria-controls="p1" id="t1">VALID – Rahul</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p2" id="t2">INVALID – Imran</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p3" id="t3">Active – Neha (Expiring Soon)</button>
+    </div>
+    <div class="hint">Tabs pe click karo ya mobile par left/right swipe karo 👆</div>
+
+    <!-- Panel 1 -->
+    <section class="panel active" id="p1" role="tabpanel" aria-labelledby="t1">
+      <div class="card">
+        <div class="header">M/s Sengar Security Pvt. Ltd.</div>
+        <div class="profile">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rahul photo"/>
+          <div class="profile-info">
+            <h2>Rahul Kumar</h2>
+            <div>ID: <b>EMP001</b></div>
+            <div>Supervisor</div>
+          </div>
+        </div>
+        <div class="details">
+          <div class="section">
+            <div class="badges">
+              <span>Validity: <b>31 Mar 2026</b></span>
+              <span class="badge valid">VALID</span>
+            </div>
+          </div>
+          <div>📞 9876543210</div>
+          <div>✉️ rahul@example.com</div>
+          <div>🏢 Operations</div>
+          <div class="section">Day shift</div>
+        </div>
+        <div class="footer">Last checked: 22 Sep 2025 12:00</div>
+      </div>
+    </section>
+
+    <!-- Panel 2 -->
+    <section class="panel" id="p2" role="tabpanel" aria-labelledby="t2">
+      <div class="card">
+        <div class="header">M/s Sengar Security Pvt. Ltd.</div>
+        <div class="profile">
+          <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Imran photo"/>
+          <div class="profile-info">
+            <h2>Imran Ali</h2>
+            <div>ID: <b>EMP003</b></div>
+            <div>Technician</div>
+          </div>
+        </div>
+        <div class="details">
+          <div class="section">
+            <div class="badges">
+              <span>Validity: <b>30 Nov 2024 (Expired)</b></span>
+              <span class="badge invalid">INVALID</span>
+            </div>
+          </div>
+          <div>📞 9876001111</div>
+          <div>✉️ imran@example.com</div>
+          <div>🏢 Maintenance</div>
+          <div class="section">Card reported lost</div>
+        </div>
+        <div class="footer">Last checked: 22 Sep 2025 12:00</div>
+      </div>
+    </section>
+
+    <!-- Panel 3 (Expiring Soon) -->
+    <section class="panel" id="p3" role="tabpanel" aria-labelledby="t3">
+      <div class="card">
+        <div class="header">M/s Sengar Security Pvt. Ltd.</div>
+        <div class="profile">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Neha photo"/>
+          <div class="profile-info">
+            <h2>Neha Singh</h2>
+            <div>ID: <b>EMP002</b></div>
+            <div>Accountant</div>
+          </div>
+        </div>
+        <div class="details">
+          <div class="section">
+            <div class="badges">
+              <span>Validity: <b>22 Oct 2025</b></span>
+              <span class="badge valid">VALID</span>
+              <span class="badge warn">Expiring Soon</span>
+            </div>
+          </div>
+          <div>✉️ neha@example.com</div>
+          <div>🏢 Finance</div>
+        </div>
+        <div class="footer">Last checked: 22 Sep 2025 12:00</div>
+      </div>
+    </section>
+  </div>
+
+<script>
+  // Tabs
+  const tabs=[...document.querySelectorAll('.tab')];
+  const panels=[...document.querySelectorAll('.panel')];
+  let current=0;
+  function activate(i){
+    tabs.forEach((t,idx)=>{
+      t.classList.toggle('active', idx===i);
+      panels[idx].classList.toggle('active', idx===i);
+    });
+    current=i;
+  }
+  tabs.forEach((t,i)=>t.addEventListener('click',()=>activate(i)));
+
+  // Swipe
+  let sx=null, sy=null;
+  document.querySelector('.container').addEventListener('touchstart',e=>{
+    sx=e.changedTouches[0].clientX; sy=e.changedTouches[0].clientY;
+  },{passive:true});
+  document.querySelector('.container').addEventListener('touchend',e=>{
+    if(sx===null) return;
+    const dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy;
+    if(Math.abs(dx)>50 && Math.abs(dy)<40){
+      if(dx<0 && current<panels.length-1) activate(current+1);
+      if(dx>0 && current>0) activate(current-1);
+    }
+    sx=sy=null;
+  },{passive:true});
+</script>
+</body>
+</html>
